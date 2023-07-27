@@ -48,11 +48,13 @@ echo "Configuration file: $CONFIGURATION_FILE"
 echo "Level: $INPUT_PHPSTAN_LEVEL"
 
 echo "Running PHPStan"
+echo ${GITHUB_WORKSPACE}/vendor/${COMPOSER_NAME}
 cd ${GITHUB_WORKSPACE}/${MODULE_SOURCE}
 php $MAGENTO_ROOT/vendor/bin/phpstan analyse \
     --level $INPUT_PHPSTAN_LEVEL \
     --no-progress \
     --memory-limit=4G \
     --configuration ${CONFIGURATION_FILE} \
-    ${GITHUB_WORKSPACE}/vendor/${COMPOSER_NAME}
+    ${GITHUB_WORKSPACE}/vendor/${COMPOSER_NAME} \
+    -vvv
 
